@@ -8,7 +8,7 @@ Rules-Requires-Root: no
 
 Package: panel-waveshare-dsi
 Architecture: any
-Depends: kmod, device-tree-compiler, ${misc:Depends}
+Depends: kmod, device-tree-compiler, ${kernel:Depends}, ${misc:Depends}
 Description: Waveshare DSI panel driver and overlay for BTT Pi
  Out-of-tree panel-waveshare-dsi kernel module built for kernel
  ${kernel:Version}

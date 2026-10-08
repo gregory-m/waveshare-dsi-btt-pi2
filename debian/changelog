@@ -1,3 +1,9 @@
+panel-waveshare-dsi (0.2.0) unstable; urgency=medium
+
+  * Pined kernel image version
+
+ -- Gregory Man <man.gregory@gmail.com>  Thu, 08 Oct 2026 11:33:32 +0300
+
 panel-waveshare-dsi (0.1.0) unstable; urgency=medium
 
   * Initial package.

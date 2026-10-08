@@ -3,6 +3,9 @@
 export KVER ?= $(shell uname -r)
 PKGDIR := debian/panel-waveshare-dsi
 
+KIMAGE_PKG ?= linux-image-btt-rockchip64
+KIMAGE_VER ?= $(shell dpkg-query  --showformat='$${Version}' --show $(KIMAGE_PKG) 2>/dev/null)
+
 %:
 	dh $@
 
@@ -19,4 +22,7 @@ override_dh_auto_clean:
 override_dh_installmodules:
 
 override_dh_gencontrol:
-	dh_gencontrol -- -Vkernel:Version=$(KVER)
+	@test -n "$(KIMAGE_PKG)" -a -n "$(KIMAGE_VER)" || \
+	  { echo "Cannot find kernel image package for $(KVER); set KIMAGE_PKG and KIMAGE_VER"; exit 1; }
+	dh_gencontrol -- -Vkernel:Version=$(KVER) \
+	  -Vkernel:Depends="$(KIMAGE_PKG) (= $(KIMAGE_VER))"
